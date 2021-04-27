@@ -145,7 +145,6 @@ public class FPSController : MonoBehaviour
         dog.GetComponentInChildren<Seek>().targetGameObject = _ball;
         dog.GetComponent<Arrive>().enabled = false;
         dog.GetComponent<Seek>().enabled = true;
-        gotBall = false;
 
     }
 }
