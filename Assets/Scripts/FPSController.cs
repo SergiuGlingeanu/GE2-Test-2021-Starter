@@ -16,6 +16,7 @@ public class FPSController : MonoBehaviour
 
     public GameObject dog;
     public bool gotBall;
+    public AudioSource audioSource;
 
     public GUIStyle style;
     // Use this for initialization
@@ -31,6 +32,8 @@ public class FPSController : MonoBehaviour
 
         dog = GameObject.Find("dog");
         dog.GetComponent<Arrive>().enabled = false;
+
+        Invoke("Woof", 3);
     }
 
     void Yaw(float angle)
@@ -146,5 +149,11 @@ public class FPSController : MonoBehaviour
         dog.GetComponent<Arrive>().enabled = false;
         dog.GetComponent<Seek>().enabled = true;
 
+    }
+
+    public void Woof()
+    {
+        audioSource.Play();
+        Invoke("Woof", 3);
     }
 }
