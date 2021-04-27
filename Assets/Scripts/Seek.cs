@@ -10,6 +10,9 @@ public class Seek : SteeringBehaviour
 
     public Vector3 target = Vector3.zero;
 
+    public Transform ballAttach;
+    public Transform player;
+
     public void OnDrawGizmos()
     {
         if (isActiveAndEnabled && Application.isPlaying)
@@ -33,6 +36,14 @@ public class Seek : SteeringBehaviour
         if (targetGameObject != null)
         {
             target = targetGameObject.transform.position;
+        }
+
+        if (targetGameObject != null && Vector3.Distance(transform.position, targetGameObject.transform.position) < 3 && targetGameObject.tag == "Ball")
+        {
+            targetGameObject.transform.position = ballAttach.position;
+            targetGameObject.transform.SetParent(ballAttach);
+            targetGameObject.GetComponent<Rigidbody>().isKinematic = true;
+            player.GetComponent<FPSController>().gotBall = true;
         }
     }
 }
