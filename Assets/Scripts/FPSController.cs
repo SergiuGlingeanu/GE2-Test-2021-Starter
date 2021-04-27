@@ -11,6 +11,11 @@ public class FPSController : MonoBehaviour
 
     public bool allowPitch = true;
 
+    public GameObject ball;
+    public float force;
+
+    public GameObject dog;
+
     public GUIStyle style;
     // Use this for initialization
     void Start()
@@ -22,6 +27,8 @@ public class FPSController : MonoBehaviour
             mainCamera = Camera.main.gameObject;
         }
         Invoke("Activate", 2);
+
+        dog = GameObject.Find("dog");
     }
 
     void Yaw(float angle)
@@ -116,5 +123,17 @@ public class FPSController : MonoBehaviour
         float contStrafe = Input.GetAxis("Horizontal");
         Walk(contWalk * speed * Time.deltaTime);
         Strafe(contStrafe * speed * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ThrowBall();
+        }
+    }
+
+    public void ThrowBall()
+    {
+        GameObject _ball = Instantiate(ball, transform.position, transform.rotation);
+        _ball.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * force, ForceMode.Impulse);
+        dog.GetComponentInChildren<Seek>().targetGameObject = _ball;
     }
 }
