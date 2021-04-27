@@ -937,6 +937,10 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   slowingDistance: 15
   targetGameObject: {fileID: 963194225}
+  ballAttach: {fileID: 1296423582}
+  player: {fileID: 963194228}
+  dog: {fileID: 1503941576}
+  ball: {fileID: 0}
 --- !u!4 &1503941576
 Transform:
   m_ObjectHideFlags: 0
